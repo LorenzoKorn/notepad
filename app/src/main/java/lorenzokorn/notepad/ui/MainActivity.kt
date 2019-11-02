@@ -1,16 +1,17 @@
 package lorenzokorn.notepad.ui
 
 import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import androidx.appcompat.app.AppCompatActivity
 import lorenzokorn.notepad.R
 import lorenzokorn.notepad.database.MainActivityViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.androidcourse.notepadkotlin.R
-import com.androidcourse.notepadkotlin.ui.edit.EditActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 const val EDIT_REQUEST_CODE = 100
 
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-        mainActivityViewMoodel.note.observe(this, Observer { note ->
+        mainActivityViewModel.note.observe(this, Observer { note ->
             if (note != null) {
                 notepadTitle.text = note.title
                 lastUpdated.text = note.lastUpdated.toString()
